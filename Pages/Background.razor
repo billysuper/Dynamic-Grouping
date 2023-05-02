@@ -1,0 +1,67 @@
+﻿@page "/updated-data"
+@using Dynamic_Grouping.Data 
+@inject SharedDataService SharedDataService
+
+<h3>Updated Data</h3>
+<p>@SharedDataService.Data</p>
+@using Microsoft.AspNetCore.Components.Forms
+
+<h3>使用 selected 属性的 InputSelect 示例</h3>
+
+<EditForm Model="model" OnValidSubmit="HandleValidSubmit">
+    <div class="form-group">
+        <label for="role-select">选择一个选项:</label>
+        <InputSelect id="role-select" class="form-control" @bind-Value="model.SelectedOption">
+            <option value="">-- 请选择 --</option>
+            @foreach (var option in optionsList)
+            {
+                <option value="@option.Value" selected="@(option.Value == model.SelectedOption)">@option.Text</option>
+            }
+        </InputSelect>
+    </div>
+    <button type="submit" class="btn btn-primary">提交</button>
+</EditForm>
+
+<p>您选择了: @model.SelectedOption</p>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        SharedDataService.OnDataUpdated += UpdateUI;
+    }
+
+    private async Task UpdateUI()
+    {
+        await InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        SharedDataService.OnDataUpdated -= UpdateUI;
+    }
+
+    private Model model = new Model { SelectedOption = "Option2" };
+    private List<SelectListItem> optionsList = new List<SelectListItem>
+    {
+        new SelectListItem { Value = "Option1", Text = "选项 1" },
+        new SelectListItem { Value = "Option2", Text = "选项 2" },
+        new SelectListItem { Value = "Option3", Text = "选项 3" },
+    };
+
+    private void HandleValidSubmit()
+    {
+        Console.WriteLine($"选择了选项: {model.SelectedOption}");
+    }
+
+    public class Model
+    {
+        public string SelectedOption { get; set; }
+    }
+
+    public class SelectListItem
+    {
+        public string Value { get; set; }
+        public string Text { get; set; }
+    }
+}

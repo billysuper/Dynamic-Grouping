@@ -1,7 +1,7 @@
-using Dynamic_Grouping.Data;
 using System.Net;
 using System.Text;
 using Newtonsoft.Json;
+using Microsoft.Extensions.Hosting;
 
 namespace Dynamic_Grouping.Data.Service
 {
@@ -9,7 +9,7 @@ namespace Dynamic_Grouping.Data.Service
     {
         public string result;
         public string serializedJson;
-        public async void PostJson(RootObject data)
+        public async Task PostJson(RootObject data)
         {
             var json = JsonConvert.SerializeObject(data.apps.orgonosprojectvpls.vpls.vplsList);
             serializedJson = json;
@@ -24,6 +24,35 @@ namespace Dynamic_Grouping.Data.Service
                 var endpoint = new Uri("http://192.168.83.145:8181/onos/v1/network/configuration/apps");
                 var response = await client.PostAsync(endpoint,content);
                 result = await response.Content.ReadAsStringAsync();
+            }
+        }
+    }
+    public class PostHostsService
+    {
+        public async void PostPorts(Dictionary<string,string>hostIface)
+        {
+            RootObject data = new RootObject();
+            data.ports = new Dictionary<string, Port>();    
+                foreach (var hostiface in hostIface)
+                {
+                    Port newPort = new Port();
+                    //newPort.interfaces = new List<Interface>();
+                    Interface newIface = new Interface();
+                    newIface.name = hostiface.Value;
+                    newPort.interfaces.Add(newIface);
+                    data.ports.Add(hostiface.Key, newPort);
+                }
+            var json = JsonConvert.SerializeObject(data.ports);
+            HttpClientHandler httpClientHandler = new HttpClientHandler()
+            {
+                Credentials = new NetworkCredential("onos", "rocks"),
+            };
+            using (var client = new HttpClient(httpClientHandler))
+            {
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var endpoint = new Uri("http://192.168.83.145:8181/onos/v1/network/configuration/ports");
+                var response = await client.PostAsync(endpoint, content);
+                var result = await response.Content.ReadAsStringAsync();
             }
         }
     }

@@ -1,0 +1,201 @@
+﻿@page "/getconfig"
+
+<PageTitle>Get Configuration</PageTitle>
+
+@using Newtonsoft.Json;
+@using Dynamic_Grouping.Data
+@using Dynamic_Grouping.Data.Service
+@inject GetCfgService GetCfg  
+@inject PostCfgService PostCfg
+@inject DeleteCfgService DeleteCfg
+@inject VlanOperation VO
+@inject GetHostsService Host
+@inject ShareData shareData
+<h1>Combat Unit</h1>
+
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">Add Vlan</label>
+    <div class="col-sm-10">
+        <input type="text" @bind="newVlan.name" />
+        <button class="btn btn-primary" @onclick="Ad">Add</button>
+    </div>
+</div>
+<b></b>
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">Remove Vlan</label>
+    <div class="col-sm-10">
+        <input type="text" @bind="removeVlan.name" />
+        <button class="btn btn-primary" @onclick="Rm">Remove</button>
+    </div>
+</div>
+<b></b>
+<p>@PostCfg.result</p>
+@if (GetCfg.GetJson==null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+//interfaces
+<EditForm Model="Host.hostsData.Hosts" OnValidSubmit="HandleValidSubmit">
+@foreach (var vlan in shareData.vlanIfaces)
+{
+    <h2>@vlan.Key</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Port</th>
+                    <th>Military Power</th>
+                    <th>Move</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var iface in vlan.Value)
+                {
+                    foreach (var host in shareData.hostIface)
+                    {
+                        if (iface==host.Value)
+                        {
+                                foreach (var Host in Host.hostsData.Hosts)
+                                {
+                                    if (Host.devicePort==host.Key)
+                                    {
+                                        <tr>
+                                            <td>@host.Key</td>
+                                            <td>@shareData.hostPower[host.Key]</td>
+                                            <td>
+                                                <InputSelect id="role-select" @bind-Value="Host.vpls">
+                                                    @foreach (var option in shareData.vlanIfaces)
+                                                    {
+                                                        <option value="@option.Key" selected="@(option.Key==vlan.Key)">@option.Key</option>
+                                                    }
+                                                </InputSelect>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            
+                        }
+                    }
+                }
+        </tbody>
+
+    </table>
+    }
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </EditForm>
+}
+<p>@PostCfg.serializedJson</p><b></b>
+<p>Success:@count</p>
+
+@code {
+    private Dictionary<string, string> ifaceVpls = new Dictionary<string, string>();
+    private VplsInfo newVlan = new VplsInfo();
+    private VplsInfo removeVlan = new VplsInfo();
+    private int count = 0;
+    protected override async Task OnInitializedAsync()
+    {
+        GetCfg.GetJson();
+        shareData.vlanIfaces = VO.getVlanCfg(GetCfg.JsonData, shareData.vlanIfaces);
+        foreach (var iface in shareData.hostIface)
+        {
+            ifaceVpls[iface.Value] = "";
+        }
+        //get host.vpls
+        foreach (var  host in Host.hostsData.Hosts)
+        {
+            foreach (var iface in shareData.hostIface)
+            {
+                //match interface with port
+                if (host.devicePort == iface.Key)
+                {
+                    foreach (var vlan in shareData.vlanIfaces)
+                    {
+                        foreach (var Iface in vlan.Value)
+                        {
+                            if (Iface==iface.Value)
+                            {
+                                host.vpls = vlan.Key;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    private void Ad()
+    {
+        if (shareData.vlanIfaces.ContainsKey(newVlan.name))
+        {
+            newVlan.name += " exist.";
+        }
+        else
+        {
+            shareData.vlanIfaces.Add(newVlan.name,newVlan.interfaces);
+            newVlan.name = "";
+        }
+    }
+    private void Rm()
+    {
+        if (!shareData.vlanIfaces.ContainsKey(removeVlan.name))
+        {
+            removeVlan.name += " doesn't exist.";
+        }
+        else
+        {
+            foreach (var iface in shareData.vlanIfaces[removeVlan.name])
+            {
+                shareData.vlanIfaces["Available"].Add(iface);
+            }
+            shareData.vlanIfaces.Remove(removeVlan.name);
+            GetCfg.JsonData = VO.setVlanCfg(GetCfg.JsonData, shareData.vlanIfaces);
+            PostCfg.PostJson(GetCfg.JsonData);
+            removeVlan.name = "";
+        }
+    }
+    private void HandleValidSubmit()
+    {
+        foreach (var  host in Host.hostsData.Hosts)
+        {
+            foreach (var iface in shareData.hostIface)
+            {
+                if (host.devicePort==iface.Key)
+                {
+                    ifaceVpls[iface.Value] = host.vpls;
+                }
+            }
+        }
+        foreach (var iface in ifaceVpls)
+        {
+            foreach (var vlan in shareData.vlanIfaces)
+            {
+                if (iface.Value==vlan.Key)
+                {
+                    foreach (var ifaces in shareData.vlanIfaces)
+                    {
+                        if (ifaces.Value.Contains(iface.Key))
+                        {
+                            ifaces.Value.Remove(iface.Key);
+                        }
+                    }
+                    vlan.Value.Add(iface.Key);
+
+                }
+
+            }
+        }
+
+        //modify vlan configuration
+        GetCfg.JsonData = VO.setVlanCfg(GetCfg.JsonData, shareData.vlanIfaces);
+        var data = GetCfg.JsonData.apps.orgonosprojectvpls.vpls.vplsList;
+        ExecuteMethodsInOrderAsync();
+        count++;
+    }
+    public async Task ExecuteMethodsInOrderAsync()
+    {
+        await PostCfg.PostJson(GetCfg.JsonData);
+        await GetCfg.GetJson();
+        shareData.vlanIfaces = VO.getVlanCfg(GetCfg.JsonData, shareData.vlanIfaces);
+    }
+
+}

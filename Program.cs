@@ -17,15 +17,25 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+// Add services to the container.
+builder.Services.AddHttpClient();
+builder.Services.AddHostedService<BackgroundProgramService>();
+builder.Services.AddSingleton<SharedDataService>();
+
+
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 builder.Services.AddSingleton<WeatherForecastService>();
 
 builder.Services.AddSingleton<GetCfgService>();
+builder.Services.AddSingleton<GetHostsService>();
 builder.Services.AddSingleton<PostCfgService>();
+builder.Services.AddSingleton<PostHostsService>();
 builder.Services.AddSingleton<DeleteCfgService>();
 builder.Services.AddSingleton<VlanOperation>();
+builder.Services.AddSingleton<ShareData>();
 
 
 var app = builder.Build();

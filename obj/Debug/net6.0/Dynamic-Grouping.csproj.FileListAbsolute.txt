@@ -154,3 +154,8 @@ C:\Users\jungl\Desktop\Dynamic-Grouping\obj\Debug\net6.0\refint\Dynamic-Grouping
 C:\Users\jungl\Desktop\Dynamic-Grouping\obj\Debug\net6.0\Dynamic-Grouping.pdb
 C:\Users\jungl\Desktop\Dynamic-Grouping\obj\Debug\net6.0\Dynamic-Grouping.genruntimeconfig.cache
 C:\Users\jungl\Desktop\Dynamic-Grouping\obj\Debug\net6.0\ref\Dynamic-Grouping.dll
+C:\Users\jungl\Desktop\Dynamic-Grouping\bin\Debug\net6.0\Microsoft.AspNetCore.Authorization.dll
+C:\Users\jungl\Desktop\Dynamic-Grouping\bin\Debug\net6.0\Microsoft.AspNetCore.Components.dll
+C:\Users\jungl\Desktop\Dynamic-Grouping\bin\Debug\net6.0\Microsoft.AspNetCore.Components.Forms.dll
+C:\Users\jungl\Desktop\Dynamic-Grouping\bin\Debug\net6.0\Microsoft.AspNetCore.Metadata.dll
+C:\Users\jungl\Desktop\Dynamic-Grouping\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll

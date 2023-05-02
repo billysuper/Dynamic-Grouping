@@ -1,0 +1,79 @@
+﻿@page "/hosts"
+
+<PageTitle>Hosts</PageTitle>
+
+@using Dynamic_Grouping.Data
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Forms
+@inject GetHostsService getHost
+@inject GetCfgService getCfg
+@inject PostHostsService postHost
+@inject DeleteCfgService deletePort
+@inject ShareData shareData
+
+<h1>Hosts</h1>
+<EditForm Model="getHost.hostsData.Hosts" OnValidSubmit="HandleValidSubmit">
+@if ( getHost.getHosts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+//interfaces
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mac</th>
+            <th>Device Port</th>
+            <th>Interface</th>
+            <th>Military Power</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var host in getHost.hostsData.Hosts)
+        {
+            <tr>
+                <td>@host.Mac</td>
+                <td>@host.devicePort</td>
+                <td>
+                    <input type="text" @bind="@shareData.hostIface[host.devicePort]"/>
+                </td>
+                <td>
+                      <InputSelect id="role-select" @bind-Value="host.militaryPower">
+                          <option value="">Unknown</option>
+                           @foreach (var power in shareData.militaryPowers)
+                           {
+                                <option value="@power" selected="@(power == shareData.hostPower[host.devicePort])">@power</option>
+                           }
+                      </InputSelect>
+                </td
+            </tr>
+        }
+    </tbody>
+</table>
+ <button type="submit" class="btn btn-primary">Update</button>
+}
+</EditForm>
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        getCfg.GetJson();
+        getHost.getHosts();
+        shareData.hostIface = getHost.MatchHostIface(shareData.hostPower, shareData.hostIface,getHost.hostsData,getCfg.JsonData);
+    }
+    private void HandleValidSubmit(EditContext context)
+    {
+        foreach (var host in getHost.hostsData.Hosts)
+        {
+            shareData.hostPower[host.devicePort] = host.militaryPower;
+        }
+        deletePort.DeletePort();
+        postHost.PostPorts(shareData.hostIface);
+        getHost.getHosts();
+        foreach (var host in getHost.hostsData.Hosts)
+        {
+             host.militaryPower =shareData.hostPower[host.devicePort];
+        }
+    }
+
+}
