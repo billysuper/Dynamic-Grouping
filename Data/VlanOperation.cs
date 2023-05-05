@@ -2,7 +2,7 @@
 {
     public class VlanOperation
     {
-        public Dictionary<string, List<string>> getVlanCfg(RootObject data, Dictionary<string, List<string>> vlanIfaces)
+        public Dictionary<string, List<string>> getVlanCfg(HostsObject hostdata, RootObject data, Dictionary<string, List<string>> vlanIfaces)
         {
             if (data.apps.orgonosprojectvpls.vpls.vplsList == null)
             {
@@ -10,10 +10,13 @@
             }
             else
             {
-                vlanIfaces["Available"] = new List<string>();
                 foreach (var vlan in data.apps.orgonosprojectvpls.vpls.vplsList)
                 {
                     vlanIfaces[vlan.name] = vlan.interfaces;
+                }
+                if (!vlanIfaces.ContainsKey("Available"))
+                {
+                    vlanIfaces["Available"] = new List<string>();
                 }
             } 
             return vlanIfaces;

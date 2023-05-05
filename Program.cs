@@ -35,7 +35,7 @@ builder.Services.AddSingleton<PostCfgService>();
 builder.Services.AddSingleton<PostHostsService>();
 builder.Services.AddSingleton<DeleteCfgService>();
 builder.Services.AddSingleton<VlanOperation>();
-builder.Services.AddSingleton<ShareData>();
+//builder.Services.AddSingleton<ShareData>();
 
 
 var app = builder.Build();

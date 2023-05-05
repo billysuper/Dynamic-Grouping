@@ -18,8 +18,8 @@ namespace Dynamic_Grouping.Data
         public List<string> IpAddresses { get; set; }
         public List<Location> Locations { get; set; }
         public string devicePort { get; set; }
-        public string militaryPower { get; set; } = string.Empty;
-        public string vpls { get; set; } ="Unknown";
+        public string militaryPower { get; set; } = "Unknown";
+        public string vpls { get; set; } ="Available";
     }
 
     public class HostsObject

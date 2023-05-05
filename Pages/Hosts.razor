@@ -9,7 +9,7 @@
 @inject GetCfgService getCfg
 @inject PostHostsService postHost
 @inject DeleteCfgService deletePort
-@inject ShareData shareData
+@inject SharedDataService shareData
 
 <h1>Hosts</h1>
 <EditForm Model="getHost.hostsData.Hosts" OnValidSubmit="HandleValidSubmit">
@@ -40,7 +40,6 @@ else
                 </td>
                 <td>
                       <InputSelect id="role-select" @bind-Value="host.militaryPower">
-                          <option value="">Unknown</option>
                            @foreach (var power in shareData.militaryPowers)
                            {
                                 <option value="@power" selected="@(power == shareData.hostPower[host.devicePort])">@power</option>
@@ -59,7 +58,22 @@ else
     {
         getCfg.GetJson();
         getHost.getHosts();
-        shareData.hostIface = getHost.MatchHostIface(shareData.hostPower, shareData.hostIface,getHost.hostsData,getCfg.JsonData);
+        shareData.hostIface = getHost.MatchHostIface(shareData.hostIface,getHost.hostsData,getCfg.JsonData);
+        if (shareData.hostIface.Count == 0)
+        {
+            foreach (var host in getHost.hostsData.Hosts)
+            {
+                shareData.hostPower[host.devicePort] = host.militaryPower;
+            }
+        }
+        else
+        {
+            foreach (var host in getHost.hostsData.Hosts)
+            {
+                host.militaryPower= shareData.hostPower[host.devicePort] ;
+            }
+        }
+
     }
     private void HandleValidSubmit(EditContext context)
     {

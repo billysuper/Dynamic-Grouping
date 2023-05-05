@@ -21,7 +21,7 @@ namespace Dynamic_Grouping.Data
     //Vlan
     public class Vpls
     {
-        public long lastUpdateTime { get; set; }
+        public long lastUpdateTime { get; set; } = new long();
         public List<VplsInfo> vplsList { get; set; } = new List<VplsInfo> { };
     }
 

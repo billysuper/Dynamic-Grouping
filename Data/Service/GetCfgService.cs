@@ -58,11 +58,10 @@ namespace Dynamic_Grouping.Data.Service
                 }
             }
         }
-        public Dictionary<string,string> MatchHostIface (Dictionary<string, string> hostsPower, Dictionary<string,string> hostIface,HostsObject hostsData,RootObject data)
+        public Dictionary<string,string> MatchHostIface ( Dictionary<string,string> hostIface,HostsObject hostsData,RootObject data)
         {
             foreach (var port in data.ports)
             {
-                hostsPower[port.Key] = "Unknown";
                 foreach (var iface in port.Value.interfaces)
                 {
                     foreach(var host in hostsData.Hosts)

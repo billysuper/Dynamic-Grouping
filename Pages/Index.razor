@@ -3,13 +3,16 @@
 @using Dynamic_Grouping.Data.Service
 @inject GetCfgService getCfg
 @inject GetHostsService getHosts
+@inject SharedDataService shareData
+@inject VlanOperation VO
 
 
 <PageTitle>Index</PageTitle>
 
 <h1>Hello, world!</h1>
-Welcome to your new app.
-
+<p>Welcome to your new app.</p><b></b>
+<p>無法新增節點</p><b></b>
+<p>可以刪除vlan的interface</p><b></b>
 <SurveyPrompt Title="How is Blazor working for you?" />
 
 @code {
@@ -17,5 +20,6 @@ Welcome to your new app.
     {
         getCfg.GetJson();
         getHosts.getHosts();
+        shareData.vlanIfaces = VO.getVlanCfg(getHosts.hostsData,getCfg.JsonData,shareData.vlanIfaces);
     }
 }
