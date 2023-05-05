@@ -1,0 +1,124 @@
+﻿@page "/adminpage"
+
+@using Dynamic_Grouping.Data
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using System.Security.Claims
+@inject IJSRuntime JsRuntime
+@inject UserManager<IdentityUser> _userManager
+@inject SignInManager<IdentityUser> _signInManager
+
+<h3>AdminPage</h3>
+
+
+<EditForm Model="newUser" OnValidSubmit="@AddUserWithRole">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group row">
+        <label for="login" class="col-sm-2 col-form-label">
+            Add User
+        </label>
+        <div class="col-sm-10">
+            <InputText id="login" @bind-Value="newUser.LoginName"></InputText>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="login" class="col-sm-2 col-form-label">
+            Add Password
+        </label>
+        <div class="col-sm-10">
+            <InputText id="login" @bind-Value="pwd"></InputText>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="role-select" class="col-sm-2 col-form-label">
+            Assign Role
+        </label>
+        <div class="col-sm-10">
+            <InputSelect id="role-select" @bind-Value="newUser.UserRole">
+                @foreach (var role in selectList)
+                {
+                    <option value="@role.Value" selected=@role.Selected>@role.Text</option>
+                }
+            </InputSelect>
+        </div>
+    </div>
+    <input type="submit" class="btn-primary" value="Save"/> 
+
+</EditForm>
+@code {
+    string pwd;
+    User newUser = new User();
+    List<Role> rolesList = new List<Role>();
+    List<SelectListItem> selectList = new List<SelectListItem>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        rolesList = new List<Role>()
+        {
+            new Role(){RoleName = "Admin", ID = "1"},
+            new Role(){RoleName = "Commander", ID = "2"},
+            new Role(){RoleName = "Subordinate", ID = "3"}
+        };
+
+        foreach (Role role in rolesList)
+        {
+            if (rolesList.Count < 1)
+            {
+                selectList.Add(new SelectListItem()
+                {
+                    Text = role.RoleName,
+                    Value = role.ID,
+                    Selected = true
+                });
+            }
+            else
+            {
+                selectList.Add(new SelectListItem()
+                    {
+                        Text = role.RoleName,
+                        Value = role.ID,
+                        Selected = false
+                    });
+            }
+        }
+
+    }
+
+    public async void AddUserWithRole(EditContext context)
+    {
+        var usermodel = context.Model as User;
+
+        var user = new IdentityUser { UserName = usermodel.LoginName,
+                                      Email = usermodel.LoginName,
+                                      EmailConfirmed = true };
+
+        var messagePrompt = "Failed";
+
+        var result = await _userManager.CreateAsync(user, pwd);
+        //result.
+        if (result.Succeeded)
+        {
+            messagePrompt = "User Was Added ";
+
+            var getRoleFromList = rolesList.FirstOrDefault(x => x.ID == usermodel?.UserRole);
+            var roleAddedResult = await _userManager.AddToRoleAsync(user, getRoleFromList?.RoleName ?? "Subordinate");
+
+            if (roleAddedResult.Succeeded)
+            {
+                messagePrompt += "& Role Was Added ";
+            }
+
+        }
+        else
+        {
+            // There was an error creating the user
+            // Display the error message to the user
+            foreach (var error in result.Errors)
+            {
+                messagePrompt += "(The account already exists.)";
+            }
+        }
+        await JsRuntime.InvokeVoidAsync("alert", messagePrompt);
+    }
+}
