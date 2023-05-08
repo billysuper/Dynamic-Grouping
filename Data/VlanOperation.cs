@@ -7,6 +7,17 @@
             if (data.apps.orgonosprojectvpls.vpls.vplsList == null)
             {
                 vlanIfaces["Available"] = new List<string>();
+                //add available iface.
+                /*foreach (var vlan in vlanIfaces)
+                {
+                    foreach (var iface in vlan.Value)
+                    {
+                        if (iface == )
+                        {
+
+                        }
+                    }
+                }*/
             }
             else
             {

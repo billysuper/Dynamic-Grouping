@@ -15,16 +15,16 @@
             </NavLink>
         </div>
         
-        <div class="nav-item px-3">
+        <AuthorizeView Roles="Admin,Commander,Subordinate">
             <NavLink class="nav-link" href="hosts">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Hosts
             </NavLink>
-        </div>
-        <div class="nav-item px-3">
+        </AuthorizeView>
+        <AuthorizeView Roles="Admin,Commander">
             <NavLink class="nav-link" href="getconfig">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Get Configuration
             </NavLink>
-        </div>
+        </AuthorizeView>
         
         <AuthorizeView Roles="Admin">
             <NavLink class="nav-link" href="adminpage">
