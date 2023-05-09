@@ -38,7 +38,6 @@ builder.Services.AddSingleton<DeleteCfgService>();
 builder.Services.AddSingleton<VlanOperation>();
 //builder.Services.AddSingleton<ShareData>();
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

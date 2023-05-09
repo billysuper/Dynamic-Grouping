@@ -95,8 +95,8 @@ else
     private int count = 0;
     protected override async Task OnInitializedAsync()
     {
-        GetCfg.GetJson();
-        Host.getHosts();
+        GetCfg.GetJson(shareData.ip,shareData.porT);
+        Host.getHosts(shareData.ip,shareData.porT);
         shareData.hostIface = Host.MatchHostIface( shareData.hostIface, Host.hostsData, GetCfg.JsonData);
         /*foreach (var host in Host.hostsData.Hosts)
         {
@@ -106,7 +106,7 @@ else
         {
             host.militaryPower= shareData.hostPower[host.devicePort] ;
         }
-        shareData.vlanIfaces = VO.getVlanCfg(Host.hostsData,GetCfg.JsonData, shareData.vlanIfaces);
+        shareData.vlanIfaces = VO.getVlanCfg(Host.hostsData,GetCfg.JsonData, shareData.vlanIfaces,shareData.hostIface);
         foreach (var iface in shareData.hostIface)
         {
             ifaceVpls[iface.Value] = "";
@@ -159,7 +159,7 @@ else
             }
             shareData.vlanIfaces.Remove(removeVlan.name);
             GetCfg.JsonData = VO.setVlanCfg(GetCfg.JsonData, shareData.vlanIfaces);
-            PostCfg.PostJson(GetCfg.JsonData);
+            PostCfg.PostJson(GetCfg.JsonData,shareData.ip,shareData.porT);
             removeVlan.name = "";
         }
     }
@@ -203,9 +203,9 @@ else
     }
     public async Task ExecuteMethodsInOrderAsync()
     {
-        await PostCfg.PostJson(GetCfg.JsonData);
-        await GetCfg.GetJson();
-        shareData.vlanIfaces = VO.getVlanCfg(Host.hostsData,GetCfg.JsonData, shareData.vlanIfaces);
+        await PostCfg.PostJson(GetCfg.JsonData,shareData.ip,shareData.porT);
+        await GetCfg.GetJson(shareData.ip,shareData.porT);
+        shareData.vlanIfaces = VO.getVlanCfg(Host.hostsData,GetCfg.JsonData, shareData.vlanIfaces,shareData.hostIface);
     }
 
 }

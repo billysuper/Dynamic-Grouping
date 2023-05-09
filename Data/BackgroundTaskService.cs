@@ -43,7 +43,7 @@ namespace Dynamic_Grouping.Data
         public Dictionary<string, string> hostIface { get; set; } = new Dictionary<string, string>();
         public Dictionary<string, List<string>> vlanIfaces { get; set; } = new Dictionary<string, List<string>>();
         public Dictionary<string, List<string>> powerhost { get; set; } = new Dictionary<string, List<string>>();
-
+        public string ip="192.168.83.145",porT="8181";
         private bool changeOrNot=false;
         //import
         private GetCfgService getCfgService = new GetCfgService();
@@ -63,97 +63,99 @@ namespace Dynamic_Grouping.Data
 
         public void UpdateData()
         {
-            // Update your data here, e.g., call an API or perform some calculation
-            getCfgService.GetJson();
-            
-            getHostsService.getHosts();
-            if (hostPower.Count==0)
+            // Update your data here, e.g., call an API or perform some calculation\
+            if (ip != "" && porT != "")
             {
-                foreach(var host in getHostsService.hostsData.Hosts)
-                {
-                    hostPower[host.devicePort] =host.militaryPower ;
-                }
-            }
-            else
-            {
-                foreach (var host in getHostsService.hostsData.Hosts)
-                {
-                    host.militaryPower = hostPower[host.devicePort];
-                }
-            }
-            
-            vlanIfaces = VO.getVlanCfg(getHostsService.hostsData,getCfgService.JsonData,vlanIfaces);
-            hostIface = getHostsService.MatchHostIface(hostIface, getHostsService.hostsData, getCfgService.JsonData);
-            //delete port of deleted hosts
-            bool exist = false;
-            foreach (var port in getCfgService.JsonData.ports)
-            {
-                exist = false;
-                foreach (var iface in port.Value.interfaces)
+                getCfgService.GetJson(ip, porT);
+
+                getHostsService.getHosts(ip, porT);
+                if (hostPower.Count == 0)
                 {
                     foreach (var host in getHostsService.hostsData.Hosts)
                     {
-                        if (port.Key == host.devicePort)
-                        {
-                            exist = true; break;
-                        }
+                        hostPower[host.devicePort] = host.militaryPower;
                     }
                 }
-                if(!exist)
+                else
                 {
-                    deleteCfgService.DeleteOnePort(port.Key);
-                    //delete iface in vpls
-                    foreach (var vlan in vlanIfaces)
+                    foreach (var host in getHostsService.hostsData.Hosts)
                     {
-                        foreach(var iface in vlan.Value)
+                        host.militaryPower = hostPower[host.devicePort];
+                    }
+                }
+
+                hostIface = getHostsService.MatchHostIface(hostIface, getHostsService.hostsData, getCfgService.JsonData);
+                vlanIfaces = VO.getVlanCfg(getHostsService.hostsData, getCfgService.JsonData, vlanIfaces,hostIface);
+                //delete port of deleted hosts
+                bool exist = false;
+                foreach (var port in getCfgService.JsonData.ports)
+                {
+                    exist = false;
+                    foreach (var iface in port.Value.interfaces)
+                    {
+                        foreach (var host in getHostsService.hostsData.Hosts)
                         {
-                            if(hostIface[port.Key] == iface)
+                            if (port.Key == host.devicePort)
                             {
-                                temp[0] = vlan.Key;
-                                temp[1] = iface;
+                                exist = true; break;
                             }
                         }
-                        if (temp[0] != "")
+                    }
+                    if (!exist)
+                    {
+                        deleteCfgService.DeleteOnePort(port.Key, ip, porT);
+                        //delete iface in vpls
+                        foreach (var vlan in vlanIfaces)
                         {
-                            vlanIfaces[temp[0]].Remove(temp[1]);
-                            temp[1] = "";
-                            //find other host
-                            foreach (var avaiface in vlanIfaces["Available"])
+                            foreach (var iface in vlan.Value)
                             {
-                                foreach(var hostiface in hostIface)
+                                if (hostIface[port.Key] == iface)
                                 {
-                                    //find it's port
-                                    if (avaiface == hostiface.Value)
+                                    temp[0] = vlan.Key;
+                                    temp[1] = iface;
+                                }
+                            }
+                            if (temp[0] != "")
+                            {
+                                vlanIfaces[temp[0]].Remove(temp[1]);
+                                temp[1] = "";
+                                //find other host
+                                foreach (var avaiface in vlanIfaces["Available"])
+                                {
+                                    foreach (var hostiface in hostIface)
                                     {
-                                        foreach(var host in getHostsService.hostsData.Hosts)
+                                        //find it's port
+                                        if (avaiface == hostiface.Value)
                                         {
-                                            //find it's host
-                                            if (host.devicePort == hostiface.Key)
+                                            foreach (var host in getHostsService.hostsData.Hosts)
                                             {
-                                                //find the same power
-                                                if (host.militaryPower == hostPower[port.Key])
+                                                //find it's host
+                                                if (host.devicePort == hostiface.Key)
                                                 {
-                                                    temp[1] = avaiface;
+                                                    //find the same power
+                                                    if (host.militaryPower == hostPower[port.Key])
+                                                    {
+                                                        temp[1] = avaiface;
+                                                    }
                                                 }
                                             }
                                         }
                                     }
                                 }
+                                if (temp[1] != "")
+                                {
+                                    vlanIfaces["Available"].Remove(temp[1]);
+                                    vlanIfaces[temp[0]].Add(temp[1]);
+                                }
+                                temp[0] = "";
+                                temp[1] = "";
                             }
-                            if (temp[1] != "")
-                            { 
-                                vlanIfaces["Available"].Remove(temp[1]);
-                                vlanIfaces[temp[0]].Add(temp[1]);
-                            }
-                            temp[0] = "";
-                            temp[1] = "";
                         }
                     }
                 }
+                getCfgService.JsonData = VO.setVlanCfg(getCfgService.JsonData, vlanIfaces);
+                postCfgService.PostJson(getCfgService.JsonData, ip, porT);
             }
-            getCfgService.JsonData = VO.setVlanCfg(getCfgService.JsonData, vlanIfaces);
-            postCfgService.PostJson(getCfgService.JsonData);
-            
             // Trigger the event to notify subscribers that the data has been updated
             OnDataUpdated?.Invoke();
         }

@@ -9,7 +9,7 @@ namespace Dynamic_Grouping.Data.Service
     {
         public string result;
         public string serializedJson;
-        public async Task PostJson(RootObject data)
+        public async Task PostJson(RootObject data,string ip,string port)
         {
             var json = JsonConvert.SerializeObject(data.apps.orgonosprojectvpls.vpls.vplsList);
             serializedJson = json;
@@ -21,7 +21,7 @@ namespace Dynamic_Grouping.Data.Service
             using (var client = new HttpClient(httpClientHandler))
             {
                 var content = new StringContent(Json, Encoding.UTF8, "application/json");
-                var endpoint = new Uri("http://192.168.83.145:8181/onos/v1/network/configuration/apps");
+                var endpoint = new Uri("http://"+ip+":"+port+"/onos/v1/network/configuration/apps");
                 var response = await client.PostAsync(endpoint,content);
                 result = await response.Content.ReadAsStringAsync();
             }
@@ -29,7 +29,7 @@ namespace Dynamic_Grouping.Data.Service
     }
     public class PostHostsService
     {
-        public async void PostPorts(Dictionary<string,string>hostIface)
+        public async void PostPorts(Dictionary<string,string>hostIface,string ip,string port)
         {
             RootObject data = new RootObject();
             data.ports = new Dictionary<string, Port>();    
@@ -50,7 +50,7 @@ namespace Dynamic_Grouping.Data.Service
             using (var client = new HttpClient(httpClientHandler))
             {
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var endpoint = new Uri("http://192.168.83.145:8181/onos/v1/network/configuration/ports");
+                var endpoint = new Uri("http://"+ip+":"+port+"/onos/v1/network/configuration/ports");
                 var response = await client.PostAsync(endpoint, content);
                 var result = await response.Content.ReadAsStringAsync();
             }

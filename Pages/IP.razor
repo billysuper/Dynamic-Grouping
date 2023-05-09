@@ -1,0 +1,26 @@
+﻿@page "/ip"
+@using Dynamic_Grouping.Data
+@using Dynamic_Grouping.Data.Service
+@inject GetCfgService getCfg
+@inject GetHostsService getHosts
+@inject SharedDataService shareData
+@inject VlanOperation VO
+
+
+<PageTitle>IP</PageTitle>
+<head>Where is the controller?</head>
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">IP</label>
+    <div class="col-sm-10">
+        <input type="text" @bind="@shareData.ip" />
+    </div>
+</div>
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">Port</label>
+    <div class="col-sm-10">
+        <input type="text" @bind="@shareData.porT" />
+    </div>
+</div>
+
+@code {
+}

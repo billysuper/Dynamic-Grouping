@@ -10,7 +10,7 @@ namespace Dynamic_Grouping.Data.Service
 {
     public class DeleteCfgService
     {
-        public async Task DeleteJson()
+        public async Task DeleteJson(string ip,string port)
         {
             HttpClientHandler httpClientHandler = new HttpClientHandler()
             {
@@ -18,11 +18,11 @@ namespace Dynamic_Grouping.Data.Service
             };
             using (var client = new HttpClient(httpClientHandler))
             {
-                var endpoint = new Uri("http://192.168.83.145:8181/onos/v1/network/configuration/apps");
+                var endpoint = new Uri("http://"+ip+":"+port+"/onos/v1/network/configuration/apps");
                 var response = await client.DeleteAsync(endpoint);
             }
         }
-        public async void DeletePort()
+        public async void DeletePort(string ip, string port)
         {
             HttpClientHandler httpClientHandler = new HttpClientHandler()
             {
@@ -30,11 +30,11 @@ namespace Dynamic_Grouping.Data.Service
             };
             using (var client = new HttpClient(httpClientHandler))
             {
-                var endpoint = new Uri("http://192.168.83.145:8181/onos/v1/network/configuration/ports");
+                var endpoint = new Uri("http://"+ip+":"+port+"/onos/v1/network/configuration/ports");
                 var response = await client.DeleteAsync(endpoint);
             }
         }
-        public async void DeleteOnePort(string devicePort)
+        public async void DeleteOnePort(string devicePort,string ip,string port)
         {
             string input = devicePort;
             int P1 = 0;
@@ -56,7 +56,7 @@ namespace Dynamic_Grouping.Data.Service
             };
             using (var client = new HttpClient(httpClientHandler))
             {
-                var endpoint = new Uri("http://192.168.83.145:8181/onos/v1/network/configuration/ports/"+devicePort);
+                var endpoint = new Uri("http://"+ip+":"+port+"/onos/v1/network/configuration/ports/" + devicePort);
                 var response = await client.DeleteAsync(endpoint);
             }
         }

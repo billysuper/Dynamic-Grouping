@@ -56,8 +56,8 @@ else
 @code {
     protected override async Task OnInitializedAsync()
     {
-        getCfg.GetJson();
-        getHost.getHosts();
+        getCfg.GetJson(shareData.ip,shareData.porT);
+        getHost.getHosts(shareData.ip,shareData.porT);
         shareData.hostIface = getHost.MatchHostIface(shareData.hostIface,getHost.hostsData,getCfg.JsonData);
         if (shareData.hostIface.Count == 0)
         {
@@ -81,9 +81,9 @@ else
         {
             shareData.hostPower[host.devicePort] = host.militaryPower;
         }
-        deletePort.DeletePort();
-        postHost.PostPorts(shareData.hostIface);
-        getHost.getHosts();
+        deletePort.DeletePort(shareData.ip,shareData.porT);
+        postHost.PostPorts(shareData.hostIface,shareData.ip,shareData.porT);
+        getHost.getHosts(shareData.ip,shareData.porT);
         foreach (var host in getHost.hostsData.Hosts)
         {
              host.militaryPower =shareData.hostPower[host.devicePort];

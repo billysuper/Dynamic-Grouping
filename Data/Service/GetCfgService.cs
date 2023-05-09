@@ -16,7 +16,7 @@ namespace Dynamic_Grouping.Data.Service
     public class GetCfgService
     {
         public RootObject JsonData;
-        public async Task GetJson()
+        public async Task GetJson(string ip, string port)
         {
             HttpClientHandler httpClientHandler = new HttpClientHandler()
             {
@@ -25,7 +25,7 @@ namespace Dynamic_Grouping.Data.Service
 
             using (var client = new HttpClient(httpClientHandler))
             {
-                var endpoint = new Uri("http://192.168.83.145:8181/onos/v1/network/configuration");
+                var endpoint = new Uri("http://"+ip+":"+port+"/onos/v1/network/configuration");
                 var result = client.GetAsync(endpoint).Result;
                 string jsonstring = result.Content.ReadAsStringAsync().Result;
                 JsonData = JsonConvert.DeserializeObject<RootObject>(jsonstring); 
@@ -36,7 +36,7 @@ namespace Dynamic_Grouping.Data.Service
     public class GetHostsService
     {
         public HostsObject hostsData;
-        public void getHosts()
+        public void getHosts(string ip,string port)
         {
             HttpClientHandler httpClientHandler = new HttpClientHandler()
             {
@@ -45,7 +45,7 @@ namespace Dynamic_Grouping.Data.Service
 
             using (var client = new HttpClient(httpClientHandler))
             {
-                var endpoint = new Uri("http://192.168.83.145:8181/onos/v1/hosts");
+                var endpoint = new Uri("http://"+ip+":"+port+"/onos/v1/hosts");
                 var result = client.GetAsync(endpoint).Result;
                 string jsonstring = result.Content.ReadAsStringAsync().Result;
                 hostsData= JsonConvert.DeserializeObject<HostsObject>(jsonstring);
