@@ -43,7 +43,7 @@ namespace Dynamic_Grouping.Data
         public Dictionary<string, string> hostIface { get; set; } = new Dictionary<string, string>();
         public Dictionary<string, List<string>> vlanIfaces { get; set; } = new Dictionary<string, List<string>>();
         public Dictionary<string, List<string>> powerhost { get; set; } = new Dictionary<string, List<string>>();
-        public string ip="192.168.83.145",porT="8181";
+        public string ip="",porT="";
         private bool changeOrNot=false;
         //import
         private GetCfgService getCfgService = new GetCfgService();
