@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pXipqBUHyFa/mS8DFRoQKeZS49P8Mi11F5CRLw3PD/M6n3pNIjfMF59NjRYDF7A4mUWbIa2/PUqnX3mzNH43aw==",
+  "dgSpecHash": "AYDrySbXM1Sqx5UfvmBclW8Y3qP6D92QdPtKvmMgcu3vkAlqmys7y/knSPm7MDlXKwDONUXVJTyUxm6GXUtdYg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jungl\\Desktop\\Dynamic-Grouping\\Dynamic-Grouping.csproj",
+  "projectFilePath": "C:\\Users\\jungl\\desktop\\Dynamic-Grouping\\Dynamic-Grouping.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jungl\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\jungl\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.16\\microsoft.aspnetcore.authorization.6.0.16.nupkg.sha512",
@@ -61,7 +61,10 @@
     "C:\\Users\\jungl\\.nuget\\packages\\system.security.permissions\\4.7.0\\system.security.permissions.4.7.0.nupkg.sha512",
     "C:\\Users\\jungl\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
     "C:\\Users\\jungl\\.nuget\\packages\\system.text.encoding.codepages\\4.7.0\\system.text.encoding.codepages.4.7.0.nupkg.sha512",
-    "C:\\Users\\jungl\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
+    "C:\\Users\\jungl\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512",
+    "C:\\Users\\jungl\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.16\\microsoft.netcore.app.runtime.win-x64.6.0.16.nupkg.sha512",
+    "C:\\Users\\jungl\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.16\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.16.nupkg.sha512",
+    "C:\\Users\\jungl\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.16\\microsoft.aspnetcore.app.runtime.win-x64.6.0.16.nupkg.sha512"
   ],
   "logs": []
 }

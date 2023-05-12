@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jungl\\Desktop\\Dynamic-Grouping\\Dynamic-Grouping.csproj": {}
+    "C:\\Users\\jungl\\desktop\\Dynamic-Grouping\\Dynamic-Grouping.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jungl\\Desktop\\Dynamic-Grouping\\Dynamic-Grouping.csproj": {
+    "C:\\Users\\jungl\\desktop\\Dynamic-Grouping\\Dynamic-Grouping.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jungl\\Desktop\\Dynamic-Grouping\\Dynamic-Grouping.csproj",
+        "projectUniqueName": "C:\\Users\\jungl\\desktop\\Dynamic-Grouping\\Dynamic-Grouping.csproj",
         "projectName": "Dynamic-Grouping",
-        "projectPath": "C:\\Users\\jungl\\Desktop\\Dynamic-Grouping\\Dynamic-Grouping.csproj",
+        "projectPath": "C:\\Users\\jungl\\desktop\\Dynamic-Grouping\\Dynamic-Grouping.csproj",
         "packagesPath": "C:\\Users\\jungl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jungl\\Desktop\\Dynamic-Grouping\\obj\\",
+        "outputPath": "C:\\Users\\jungl\\desktop\\Dynamic-Grouping\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jungl\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -80,6 +80,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+              "version": "[6.0.16, 6.0.16]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.win-x64",
+              "version": "[6.0.16, 6.0.16]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+              "version": "[6.0.16, 6.0.16]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -89,6 +103,11 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
         }
       }
     }
