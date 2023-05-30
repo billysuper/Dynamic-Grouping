@@ -19,7 +19,7 @@ namespace Dynamic_Grouping.Data
         public Task StartAsync(CancellationToken cancellationToken)
         {
             //chack every 1 second.
-            _timer = new Timer(UpdateData, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+            _timer = new Timer(UpdateData, null, TimeSpan.Zero, TimeSpan.FromSeconds(3));
             return Task.CompletedTask;
         }
 
@@ -40,6 +40,7 @@ namespace Dynamic_Grouping.Data
         //shareData
         public List<string> militaryPowers { get; set; } = new List<string>() { "Unknown","infantry", "tank", "fighter" };
         public Dictionary<string, List<string>> vlanList { get; set; } = new Dictionary<string, List<string>>();
+        public Dictionary<string, List<string>>  newvlanList { get; set; } = new Dictionary<string, List<string>>();
         /*public Dictionary<string, string> hostPower { get; set; } = new Dictionary<string, string>();
         public Dictionary<string, string> hostIface { get; set; } = new Dictionary<string, string>();
         public Dictionary<string, List<string>> vlanIfaces { get; set; } = new Dictionary<string, List<string>>();
@@ -57,8 +58,8 @@ namespace Dynamic_Grouping.Data
         public event Func<Task> OnDataUpdated;
 
         // Store your data here, e.g., a property or a field
-        public int Data { get; private set; }
-        public bool status = true;
+        public int Data { get; set; }
+        public bool isfinish = true;
         public async Task ExecuteMethodsInOrderAsync()
         {
             if(getCfgService.JsonData != null)
@@ -71,8 +72,14 @@ namespace Dynamic_Grouping.Data
         public void UpdateData()
         {
             // Update your data here, e.g., call an API or perform some calculation
+            isfinish = false;
             Data++;
             ExecuteMethodsInOrderAsync();
+            if(getCfgService.hostVlan != null&&getCfgService.hostVlan.Hosts.Count!= getCfgService.hostsData.Hosts.Count)
+            {
+                getCfgService.hostVlan = getCfgService.hostsData;
+            }
+            isfinish = true;
             /*if (ipsubmit)
             {
                 getCfgService.GetJson(ip, porT);

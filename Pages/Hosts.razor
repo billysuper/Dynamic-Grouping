@@ -9,7 +9,7 @@
 
 <h1>Hosts</h1>
 
-<p>time:@shareData.Data</p>a
+<p>time:@shareData.Data</p>
 @if ( shareData.getCfgService.hostsData.Hosts == null)
 {
     <p><em>Loading...</em></p>
@@ -35,18 +35,25 @@ else
                 <td>
                     <input type="text" @bind="@host.iface"/>
                 </td>
-                <td>
-                      <select @bind="host.militaryPower">
-                           @foreach (var power in shareData.militaryPowers)
-                           {
-                                <option value="@power" selected="@(power == host.militaryPower)">@power</option>
-                           }
-                      </select>
-                </td
+                    @foreach (var newhost in shareData.getCfgService.hostVlan.Hosts)
+                    {
+                        if (host.devicePort == newhost.devicePort)
+                        {
+                            <td>
+                              <select @bind="newhost.militaryPower">
+                                   @foreach (var power in shareData.militaryPowers)
+                                   {
+                                        <option value="@power" selected="@(power == newhost.militaryPower)">@power</option>
+                                   }
+                              </select>
+                            </td>
+                        }
+                    }
             </tr>
         }
     </tbody>
 </table>
+<button class="btn btn-primary" @onclick="Update">Update</button>
 }
 @code {
 
@@ -55,21 +62,22 @@ else
         //background
         await base.OnInitializedAsync();
         shareData.OnDataUpdated += UpdateUI;
+        shareData.getCfgService.hostVlan = shareData.getCfgService.hostsData;
         //shareData.hostIface = getHost.MatchHostIface(shareData.hostIface,getHost.hostsData,getCfg.JsonData);
         /*if (shareData.hostIface.Count == 0)
         {
-            foreach (var host in getHost.hostsData.Hosts)
-            {
-                shareData.hostPower[host.devicePort] = host.militaryPower;
-            }
-        }
-        else
+        foreach (var host in getHost.hostsData.Hosts)
         {
-            foreach (var host in getHost.hostsData.Hosts)
-            {
-                host.militaryPower= shareData.hostPower[host.devicePort] ;
-            }
-        }*/
+        shareData.hostPower[host.devicePort] = host.militaryPower;
+    }
+    }
+    else
+    {
+    foreach (var host in getHost.hostsData.Hosts)
+        {
+        host.militaryPower= shareData.hostPower[host.devicePort] ;
+    }
+    }*/
     }
     //background
     private async Task UpdateUI()
@@ -84,16 +92,29 @@ else
     private void HandleValidSubmit(EditContext context)
     {
         /*foreach (var host in getCfg.hostsData.Hosts)
-        {
+            {
             shareData.hostPower[host.devicePort] = host.militaryPower;
         }
         deletePort.DeletePort(shareData.ip,shareData.porT);
         postHost.PostPorts(shareData.hostIface,shareData.ip,shareData.porT);
         getHost.getHosts(shareData.ip,shareData.porT);
         foreach (var host in getHost.hostsData.Hosts)
-        {
+             {
              host.militaryPower =shareData.hostPower[host.devicePort];
         }*/
     }
-
+    private void Update()
+    {
+        while (!shareData.isfinish) ;
+        foreach (var host in shareData.getCfgService.hostsData.Hosts)
+        {
+            foreach (var newhost in shareData.getCfgService.hostVlan.Hosts)
+            {
+                if(host.devicePort == newhost.devicePort)
+                {
+                    host.militaryPower = newhost.militaryPower;
+                }
+            }
+        }
+    }
 }

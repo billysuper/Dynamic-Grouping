@@ -49,14 +49,20 @@ else
                             <tr>
                                 <td>@host.devicePort</td>
                                 <td>@host.militaryPower</td>
-                                <td>
-                                    <select id="role-select" @bind="host.vpls">
-                                        @foreach (var option in shareData.vlanList)
-                                        {
-                                            <option value="@option.Key" selected="@(option.Key==host.vpls)">@option.Key</option>
-                                        }
-                                    </select>
-                                </td>
+                                @foreach (var temphost in shareData.getCfgService.hostVlan.Hosts)
+                                {
+                                    if (temphost.Mac == host.Mac)
+                                    {
+                                        <td>
+                                                <select id="role-select" @bind="temphost.vpls">
+                                                    @foreach (var option in shareData.vlanList)
+                                                    {
+                                                        <option value="@option.Key" selected="@(option.Key==temphost.vpls)">@option.Key</option>
+                                                    }
+                                                </select>
+                                        </td>
+                                    }
+                                }
                             </tr>
                         }
                     }    
@@ -64,6 +70,7 @@ else
         </table>
     }
 }
+<button class="btn btn-primary" @onclick="Update">Update</button>
 <p>@shareData.postCfgService.serializedJson</p><b></b>
 <p>Success:@count</p><b></b>
 <p>time:@shareData.Data</p>
@@ -76,43 +83,7 @@ else
     {
         await base.OnInitializedAsync();
         shareData.OnDataUpdated += UpdateUI;
-        /*GetCfg.GetJson(shareData.ip,shareData.porT);
-        Host.getHosts(shareData.ip,shareData.porT);
-        shareData.hostIface = Host.MatchHostIface( shareData.hostIface, Host.hostsData, GetCfg.JsonData);
-        foreach (var host in Host.hostsData.Hosts)
-        {
-            shareData.hostPower[host.devicePort] = host.militaryPower  ;
-        }
-        foreach (var host in Host.hostsData.Hosts)
-        {
-            host.militaryPower= shareData.hostPower[host.devicePort] ;
-        }
-        shareData.vlanIfaces = VO.getVlanCfg(Host.hostsData,GetCfg.JsonData, shareData.vlanIfaces,shareData.hostIface);
-        foreach (var iface in shareData.hostIface)
-        {
-            ifaceVpls[iface.Value] = "";
-        }
-        //get host.vpls
-        foreach (var  host in Host.hostsData.Hosts)
-        {
-            foreach (var iface in shareData.hostIface)
-            {
-                //match interface with port
-                if (host.devicePort == iface.Key)
-                {
-                    foreach (var vlan in shareData.vlanIfaces)
-                    {
-                        foreach (var Iface in vlan.Value)
-                        {
-                            if (Iface==iface.Value)
-                            {
-                                host.vpls = vlan.Key;
-                            }
-                        }
-                    }
-                }
-            }
-        }*/
+        shareData.getCfgService.hostVlan = shareData.getCfgService.hostsData;
     }
     private async Task UpdateUI()
     {
@@ -144,52 +115,33 @@ else
         else
         {
             //move to Available
-            foreach (var iface in shareData.vlanList[removeVlan.name])
-            {
+            /*foreach (var iface in shareData.vlanList[removeVlan.name])
+                {
                 shareData.vlanList["Available"].Add(iface);
-            }
+            }*/
             shareData.vlanList.Remove(removeVlan.name);
+            foreach (var host in shareData.getCfgService.hostsData.Hosts)
+            {
+                if (host.vpls == removeVlan.name)
+                {
+                    host.vpls = "Available";
+                }
+            }
             removeVlan.name = "";
         }
     }
-    private void HandleValidSubmit()
+    private void Update()
     {
-        /*foreach (var  host in shareData.getCfgService.hostsData.Hosts)
+        while (!shareData.isfinish) ;
+        foreach (var host in shareData.getCfgService.hostsData.Hosts)
         {
-            foreach (var iface in shareData.hostIface)
+            foreach (var newhost in shareData.getCfgService.hostVlan.Hosts)
             {
-                if (host.devicePort==iface.Key)
+                if (host.devicePort == newhost.devicePort)
                 {
-                    ifaceVpls[iface.Value] = host.vpls;
+                    host.vpls = newhost.vpls;
                 }
-            }
-        }*/
-        /*foreach (var iface in ifaceVpls)
-        {
-            foreach (var vlan in shareData.vlanIfaces)
-            {
-                if (iface.Value==vlan.Key)
-                {
-                    foreach (var ifaces in shareData.vlanIfaces)
-                    {
-                        if (ifaces.Value.Contains(iface.Key))
-                        {
-                            ifaces.Value.Remove(iface.Key);
-                        }
-                    }
-                    vlan.Value.Add(iface.Key);
-
-                }
-
             }
         }
-
-        //modify vlan configuration
-        GetCfg.JsonData = VO.setVlanCfg(GetCfg.JsonData, shareData.vlanIfaces);
-        var data = GetCfg.JsonData.apps.orgonosprojectvpls.vpls.vplsList;
-        ExecuteMethodsInOrderAsync();*/
-        count++;
     }
-    
-
 }

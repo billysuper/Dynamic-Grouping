@@ -10,6 +10,7 @@ using Dynamic_Grouping.Data;
 using System.Net;
 using System.Text;
 using System.Text.Json;
+using Microsoft.Extensions.Hosting;
 
 namespace Dynamic_Grouping.Data.Service
 {
@@ -18,6 +19,7 @@ namespace Dynamic_Grouping.Data.Service
         public RootObject JsonData;
         public HostsObject hostsData ;
         public HostsObject newhostsData;
+        public HostsObject hostVlan;
         private List<string> temp = new List<string>();
         public async Task Get(string ip, string port,Dictionary<string,List<string>> vlanList)
         {
@@ -38,6 +40,7 @@ namespace Dynamic_Grouping.Data.Service
                 string hjsonstring = hresult.Content.ReadAsStringAsync().Result;
                 newhostsData = JsonConvert.DeserializeObject<HostsObject>(hjsonstring);
             }
+
             //set port
             foreach (var host in newhostsData.Hosts)
             {
@@ -46,8 +49,42 @@ namespace Dynamic_Grouping.Data.Service
                     host.devicePort = location.ElementId + "/" + location.Port;
                 }
             }
+            //set interfaces to hosts
+            foreach (var Port in JsonData.ports)
+            {
+                foreach (var iface in Port.Value.interfaces)
+                {
+                    foreach (var host in newhostsData.Hosts)
+                    {
+                        if (Port.Key == host.devicePort)
+                        {
+                            host.iface = iface.name;
+                        }
+                    }
+                }
+            }
+            //get vlan
+            foreach (var vlan in vlanList)
+            {
+                vlan.Value.Clear();
+            }
+            foreach (var vlan in JsonData.apps.orgonosprojectvpls.vpls.vplsList)
+            {
+                vlanList[vlan.name] = new List<string>();
+                foreach (var iface in vlan.interfaces)
+                {
+                    foreach (var host in newhostsData.Hosts)
+                    {
+                        if (host.iface == iface)
+                        {
+                            host.vpls = vlan.name;
+                            vlanList[vlan.name].Add(host.devicePort);
+                        }
+                    }
+                }
+            }
             //transfer newhostsData to hostsData
-            if(hostsData == null)
+            if (hostsData == null)
             {
                 hostsData = newhostsData;
             }
@@ -59,44 +96,48 @@ namespace Dynamic_Grouping.Data.Service
                     {
                         if (newhost.Mac == host.Mac)
                         {
-                            newhost.vpls = host.vpls;
-                            newhost.iface = host.iface;
+                            //newhost.vpls = host.vpls;
+                            //newhost.iface = host.iface;
                             newhost.militaryPower = host.militaryPower;
                         }
                     }
                 }
             }
-            hostsData = newhostsData;
-            //set interfaces to hosts
-            foreach (var Port in JsonData.ports)
+            //compare
+            hostsData = compareAndmove(newhostsData,hostsData,ip, port);
+        }
+        private HostsObject compareAndmove(HostsObject newdata,HostsObject data,string ip,string porT)
+        {
+            if (newdata.Hosts.Count != data.Hosts.Count)
             {
-                foreach(var iface in Port.Value.interfaces)
+                //find broken host
+                List<string> notexist = new List<string>();
+                List<string> exist = new List<string>();
+                foreach (var host in data.Hosts)
                 {
-                    foreach(var host in hostsData.Hosts)
+                    notexist.Add(host.devicePort);
+                }
+                foreach (var newhost in newdata.Hosts)
+                {
+                    exist.Add(newhost.devicePort);
+                }
+                notexist = notexist.Except(exist).ToList();
+                foreach (var nport in notexist)
+                {
+                    foreach (var host in data.Hosts)
                     {
-                        if (Port.Key == host.devicePort)
+                        foreach(var newhost in newdata.Hosts)
                         {
-                            host.iface = iface.name;
+                            if (nport == host.devicePort && host.militaryPower == newhost.militaryPower && newhost.vpls == "Available")
+                            {
+                                newhost.vpls = host.vpls;
+                                break;
+                            }
                         }
                     }
                 }
             }
-            //get vlan-port
-            foreach (var vlan in JsonData.apps.orgonosprojectvpls.vpls.vplsList)
-            {
-                vlanList[vlan.name] = new List<string>();
-                foreach(var iface in vlan.interfaces)
-                {
-                    foreach (var host in hostsData.Hosts)
-                    {
-                        if (host.iface == iface)
-                        {
-                            host.vpls = vlan.name;
-                            vlanList[vlan.name].Add(host.devicePort);
-                        }
-                    }
-                }
-            }
+            return newdata;
         }
         /*public async Task GetJson(string ip, string port)
         {
