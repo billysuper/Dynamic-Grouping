@@ -5,15 +5,12 @@
 @using Dynamic_Grouping.Data
 @using System.ComponentModel.DataAnnotations
 @using Microsoft.AspNetCore.Components.Forms
-@inject GetHostsService getHost
-@inject GetCfgService getCfg
-@inject PostHostsService postHost
-@inject DeleteCfgService deletePort
 @inject SharedDataService shareData
 
 <h1>Hosts</h1>
-<EditForm Model="getHost.hostsData.Hosts" OnValidSubmit="HandleValidSubmit">
-@if ( getHost.getHosts == null)
+
+<p>time:@shareData.Data</p>a
+@if ( shareData.getCfgService.hostsData.Hosts == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -30,36 +27,36 @@ else
         </tr>
     </thead>
     <tbody>
-        @foreach (var host in getHost.hostsData.Hosts)
+        @foreach (var host in shareData.getCfgService.hostsData.Hosts)
         {
             <tr>
                 <td>@host.Mac</td>
                 <td>@host.devicePort</td>
                 <td>
-                    <input type="text" @bind="@shareData.hostIface[host.devicePort]"/>
+                    <input type="text" @bind="@host.iface"/>
                 </td>
                 <td>
-                      <InputSelect id="role-select" @bind-Value="host.militaryPower">
+                      <select @bind="host.militaryPower">
                            @foreach (var power in shareData.militaryPowers)
                            {
-                                <option value="@power" selected="@(power == shareData.hostPower[host.devicePort])">@power</option>
+                                <option value="@power" selected="@(power == host.militaryPower)">@power</option>
                            }
-                      </InputSelect>
+                      </select>
                 </td
             </tr>
         }
     </tbody>
 </table>
- <button type="submit" class="btn btn-primary">Update</button>
 }
-</EditForm>
 @code {
+
     protected override async Task OnInitializedAsync()
     {
-        getCfg.GetJson(shareData.ip,shareData.porT);
-        getHost.getHosts(shareData.ip,shareData.porT);
-        shareData.hostIface = getHost.MatchHostIface(shareData.hostIface,getHost.hostsData,getCfg.JsonData);
-        if (shareData.hostIface.Count == 0)
+        //background
+        await base.OnInitializedAsync();
+        shareData.OnDataUpdated += UpdateUI;
+        //shareData.hostIface = getHost.MatchHostIface(shareData.hostIface,getHost.hostsData,getCfg.JsonData);
+        /*if (shareData.hostIface.Count == 0)
         {
             foreach (var host in getHost.hostsData.Hosts)
             {
@@ -72,12 +69,21 @@ else
             {
                 host.militaryPower= shareData.hostPower[host.devicePort] ;
             }
-        }
-
+        }*/
+    }
+    //background
+    private async Task UpdateUI()
+    {
+        await InvokeAsync(StateHasChanged);
+    }
+    //background
+    public void Dispose()
+    {
+        shareData.OnDataUpdated -= UpdateUI;
     }
     private void HandleValidSubmit(EditContext context)
     {
-        foreach (var host in getHost.hostsData.Hosts)
+        /*foreach (var host in getCfg.hostsData.Hosts)
         {
             shareData.hostPower[host.devicePort] = host.militaryPower;
         }
@@ -87,7 +93,7 @@ else
         foreach (var host in getHost.hostsData.Hosts)
         {
              host.militaryPower =shareData.hostPower[host.devicePort];
-        }
+        }*/
     }
 
 }

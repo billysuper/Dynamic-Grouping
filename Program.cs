@@ -31,7 +31,6 @@ builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuth
 builder.Services.AddSingleton<WeatherForecastService>();
 
 builder.Services.AddSingleton<GetCfgService>();
-builder.Services.AddSingleton<GetHostsService>();
 builder.Services.AddSingleton<PostCfgService>();
 builder.Services.AddSingleton<PostHostsService>();
 builder.Services.AddSingleton<DeleteCfgService>();

@@ -2,7 +2,6 @@
 @using Dynamic_Grouping.Data
 @using Dynamic_Grouping.Data.Service
 @inject GetCfgService getCfg
-@inject GetHostsService getHosts
 @inject SharedDataService shareData
 @inject VlanOperation VO
 
@@ -30,8 +29,9 @@
 @code {
     private void set()
     {
-        getCfg.GetJson(shareData.ip,shareData.porT);
+        //shareData.ipsubmit = true;
+        /*getCfg.GetJson(shareData.ip,shareData.porT);
         getHosts.getHosts(shareData.ip, shareData.porT);
-        shareData.vlanIfaces = VO.getVlanCfg(getHosts.hostsData,getCfg.JsonData,shareData.vlanIfaces,shareData.hostIface);
+        shareData.vlanIfaces = VO.getVlanCfg(getHosts.hostsData,getCfg.JsonData,shareData.vlanIfaces,shareData.hostIface);*/
     }
 }

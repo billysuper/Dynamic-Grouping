@@ -19,7 +19,7 @@ namespace Dynamic_Grouping.Data
         public Task StartAsync(CancellationToken cancellationToken)
         {
             //chack every 1 second.
-            _timer = new Timer(UpdateData, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
+            _timer = new Timer(UpdateData, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
             return Task.CompletedTask;
         }
 
@@ -39,32 +39,41 @@ namespace Dynamic_Grouping.Data
     {
         //shareData
         public List<string> militaryPowers { get; set; } = new List<string>() { "Unknown","infantry", "tank", "fighter" };
-        public Dictionary<string, string> hostPower { get; set; } = new Dictionary<string, string>();
+        public Dictionary<string, List<string>> vlanList { get; set; } = new Dictionary<string, List<string>>();
+        /*public Dictionary<string, string> hostPower { get; set; } = new Dictionary<string, string>();
         public Dictionary<string, string> hostIface { get; set; } = new Dictionary<string, string>();
         public Dictionary<string, List<string>> vlanIfaces { get; set; } = new Dictionary<string, List<string>>();
-        public Dictionary<string, List<string>> powerhost { get; set; } = new Dictionary<string, List<string>>();
-        public string ip="",porT="";
-        private bool changeOrNot=false;
+        public Dictionary<string, List<string>> powerhost { get; set; } = new Dictionary<string, List<string>>();*/
+        public string ip="192.168.83.145",porT="8181";
+        /*private bool changeOrNot=false;
+        public bool ipsubmit=false;*/
         //import
-        private GetCfgService getCfgService = new GetCfgService();
-        private PostCfgService postCfgService = new PostCfgService();
+        public GetCfgService getCfgService = new GetCfgService();
+        public PostCfgService postCfgService = new PostCfgService();
         private DeleteCfgService deleteCfgService = new DeleteCfgService();
-        private GetHostsService getHostsService = new GetHostsService();
-        private VlanOperation VO = new VlanOperation();
-        private string[] temp= { "", "" ,"",""};
 
-
-        private Vpls prevpls= new Vpls();
-        private Vpls curvpls= new Vpls();
+        /*private Vpls prevpls= new Vpls();
+        private Vpls curvpls= new Vpls();*/
         public event Func<Task> OnDataUpdated;
 
         // Store your data here, e.g., a property or a field
-        public string Data { get; private set; }
+        public int Data { get; private set; }
+        public bool status = true;
+        public async Task ExecuteMethodsInOrderAsync()
+        {
+            if(getCfgService.JsonData != null)
+            {
+                await postCfgService.PostJson(getCfgService.JsonData, getCfgService.hostsData, ip, porT);
+            }
+            await getCfgService.Get(ip, porT, vlanList); 
+        }
 
         public void UpdateData()
         {
-            // Update your data here, e.g., call an API or perform some calculation\
-            if (ip != "" && porT != "")
+            // Update your data here, e.g., call an API or perform some calculation
+            Data++;
+            ExecuteMethodsInOrderAsync();
+            /*if (ipsubmit)
             {
                 getCfgService.GetJson(ip, porT);
 
@@ -155,7 +164,7 @@ namespace Dynamic_Grouping.Data
                 }
                 getCfgService.JsonData = VO.setVlanCfg(getCfgService.JsonData, vlanIfaces);
                 postCfgService.PostJson(getCfgService.JsonData, ip, porT);
-            }
+            }*/
             // Trigger the event to notify subscribers that the data has been updated
             OnDataUpdated?.Invoke();
         }

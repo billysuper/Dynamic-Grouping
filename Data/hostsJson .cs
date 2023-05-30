@@ -19,7 +19,8 @@ namespace Dynamic_Grouping.Data
         public List<Location> Locations { get; set; }
         public string devicePort { get; set; }
         public string militaryPower { get; set; } = "Unknown";
-        public string vpls { get; set; } ="Available";
+        public string vpls { get; set; } = "Available";
+        public string iface {get; set;} = "None";
     }
 
     public class HostsObject

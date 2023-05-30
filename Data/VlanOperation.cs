@@ -6,7 +6,8 @@
         {
             List<string> existifaces = new List<string>();
             bool exist=false;
-            if (data.apps.orgonosprojectvpls.vpls.vplsList == null)
+            //add Available
+            /*if (data.apps.orgonosprojectvpls.vpls.vplsList == null)
             {
                 vlanIfaces   ["Available"] = new List<string>();
                 //add available iface.
@@ -23,12 +24,12 @@
             }
             else
             {
-                existifaces.Clear();
+                existifaces.Clear();*/
                 foreach (var vlan in data.apps.orgonosprojectvpls.vpls.vplsList)
                 {
                     vlanIfaces[vlan.name] = vlan.interfaces;
                 }
-                if (!vlanIfaces.ContainsKey("Available"))
+                /*if (!vlanIfaces.ContainsKey("Available"))
                 {
                     vlanIfaces["Available"] = new List<string>();
                     foreach (var hostiface in hostifaces)
@@ -69,7 +70,7 @@
                         }
                     }
                 }
-            }  
+            }  */
             return vlanIfaces;
         }
 
