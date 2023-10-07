@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jungl\\Desktop\\Dynamic-Grouping\\Dynamic-Grouping.csproj": {}
+    "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\Dynamic-Grouping.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jungl\\Desktop\\Dynamic-Grouping\\Dynamic-Grouping.csproj": {
+    "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\Dynamic-Grouping.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jungl\\Desktop\\Dynamic-Grouping\\Dynamic-Grouping.csproj",
+        "projectUniqueName": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\Dynamic-Grouping.csproj",
         "projectName": "Dynamic-Grouping",
-        "projectPath": "C:\\Users\\jungl\\Desktop\\Dynamic-Grouping\\Dynamic-Grouping.csproj",
+        "projectPath": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\Dynamic-Grouping.csproj",
         "packagesPath": "C:\\Users\\jungl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jungl\\Desktop\\Dynamic-Grouping\\obj\\",
+        "outputPath": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jungl\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -63,21 +63,7 @@ else
         await base.OnInitializedAsync();
         shareData.OnDataUpdated += UpdateUI;
         shareData.getCfgService.hostVlan = shareData.getCfgService.hostsData;
-        //shareData.hostIface = getHost.MatchHostIface(shareData.hostIface,getHost.hostsData,getCfg.JsonData);
-        /*if (shareData.hostIface.Count == 0)
-        {
-        foreach (var host in getHost.hostsData.Hosts)
-        {
-        shareData.hostPower[host.devicePort] = host.militaryPower;
-    }
-    }
-    else
-    {
-    foreach (var host in getHost.hostsData.Hosts)
-        {
-        host.militaryPower= shareData.hostPower[host.devicePort] ;
-    }
-    }*/
+        
     }
     //background
     private async Task UpdateUI()
@@ -88,20 +74,6 @@ else
     public void Dispose()
     {
         shareData.OnDataUpdated -= UpdateUI;
-    }
-    private void HandleValidSubmit(EditContext context)
-    {
-        /*foreach (var host in getCfg.hostsData.Hosts)
-            {
-            shareData.hostPower[host.devicePort] = host.militaryPower;
-        }
-        deletePort.DeletePort(shareData.ip,shareData.porT);
-        postHost.PostPorts(shareData.hostIface,shareData.ip,shareData.porT);
-        getHost.getHosts(shareData.ip,shareData.porT);
-        foreach (var host in getHost.hostsData.Hosts)
-             {
-             host.militaryPower =shareData.hostPower[host.devicePort];
-        }*/
     }
     private void Update()
     {

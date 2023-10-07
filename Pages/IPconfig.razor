@@ -1,0 +1,52 @@
+﻿@page "/ipconfig"
+
+<PageTitle>IPconfig</PageTitle>
+
+@using Dynamic_Grouping.Data
+@inject SharedDataService shareData
+
+<h1>IPconfig</h1>
+<head>
+    Login with different roles.
+</head>
+<head>
+    Where is the controller?
+</head>
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">IP</label>
+    <div class="col-sm-10">
+        <input type="text" @bind="@ip" />
+    </div>
+</div>
+<button type="submit" class="btn btn-primary" @onclick="set">Submit</button>
+<p>@shareData.ip</p>
+<p>@shareData.porT</p>
+<p>@shareData.Data</p>
+@code { 
+    private string ip = "", port = "";
+    private void set()
+    {
+
+        shareData.ip = ip;
+        shareData.ipsubmit = true;
+        shareData.Data++;
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        //background
+        await base.OnInitializedAsync();
+        shareData.OnDataUpdated += UpdateUI;
+        shareData.getCfgService.hostVlan = shareData.getCfgService.hostsData;
+
+    }
+    //background
+    private async Task UpdateUI()
+    {
+        await InvokeAsync(StateHasChanged);
+    }
+    //background
+    public void Dispose()
+    {
+        shareData.OnDataUpdated -= UpdateUI;
+    }
+}

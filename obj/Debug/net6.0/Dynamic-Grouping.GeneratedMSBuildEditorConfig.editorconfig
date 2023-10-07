@@ -9,69 +9,73 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Dynamic_Grouping
 build_property.RootNamespace = Dynamic_Grouping
-build_property.ProjectDir = C:\Users\jungl\Desktop\Dynamic-Grouping\
+build_property.ProjectDir = C:\Users\jungl\Desktop\實作\Dynamic-Grouping\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\jungl\Desktop\Dynamic-Grouping
+build_property.MSBuildProjectDirectory = C:\Users\jungl\Desktop\實作\Dynamic-Grouping
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/jungl/Desktop/Dynamic-Grouping/App.razor]
+[C:/Users/jungl/Desktop/實作/Dynamic-Grouping/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jungl/Desktop/Dynamic-Grouping/Pages/AdminPage.razor]
+[C:/Users/jungl/Desktop/實作/Dynamic-Grouping/Pages/AdminPage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5QYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jungl/Desktop/Dynamic-Grouping/Pages/Hosts.razor]
+[C:/Users/jungl/Desktop/實作/Dynamic-Grouping/Pages/Hosts.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9zdHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jungl/Desktop/Dynamic-Grouping/Pages/Index.razor]
+[C:/Users/jungl/Desktop/實作/Dynamic-Grouping/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jungl/Desktop/Dynamic-Grouping/Pages/Orginization.razor]
+[C:/Users/jungl/Desktop/實作/Dynamic-Grouping/Pages/IPconfig.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSVBjb25maWcucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jungl/Desktop/實作/Dynamic-Grouping/Pages/Orginization.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3JnaW5pemF0aW9uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jungl/Desktop/Dynamic-Grouping/Shared/LoginDisplay.razor]
+[C:/Users/jungl/Desktop/實作/Dynamic-Grouping/Shared/LoginDisplay.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luRGlzcGxheS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jungl/Desktop/Dynamic-Grouping/Shared/SurveyPrompt.razor]
+[C:/Users/jungl/Desktop/實作/Dynamic-Grouping/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jungl/Desktop/Dynamic-Grouping/_Imports.razor]
+[C:/Users/jungl/Desktop/實作/Dynamic-Grouping/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jungl/Desktop/Dynamic-Grouping/Shared/MainLayout.razor]
+[C:/Users/jungl/Desktop/實作/Dynamic-Grouping/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-vh5aazi08p
 
-[C:/Users/jungl/Desktop/Dynamic-Grouping/Shared/NavMenu.razor]
+[C:/Users/jungl/Desktop/實作/Dynamic-Grouping/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-v46lvmlr6w
 
-[C:/Users/jungl/Desktop/Dynamic-Grouping/Areas/Identity/Pages/Account/LogOut.cshtml]
+[C:/Users/jungl/Desktop/實作/Dynamic-Grouping/Areas/Identity/Pages/Account/LogOut.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dPdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jungl/Desktop/Dynamic-Grouping/Areas/Identity/Pages/Shared/_LoginPartial.cshtml]
+[C:/Users/jungl/Desktop/實作/Dynamic-Grouping/Areas/Identity/Pages/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jungl/Desktop/Dynamic-Grouping/Pages/Error.cshtml]
+[C:/Users/jungl/Desktop/實作/Dynamic-Grouping/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jungl/Desktop/Dynamic-Grouping/Pages/_Host.cshtml]
+[C:/Users/jungl/Desktop/實作/Dynamic-Grouping/Pages/_Host.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jungl/Desktop/Dynamic-Grouping/Pages/_Layout.cshtml]
+[C:/Users/jungl/Desktop/實作/Dynamic-Grouping/Pages/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
