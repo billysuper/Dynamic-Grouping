@@ -10,7 +10,7 @@
 <h1>Hosts</h1>
 
 <p>time:@shareData.Data</p>
-@if ( shareData.getCfgService.hostsData.Hosts==null)
+@if ( shareData.getCfgService.hostsData==null)
 {
     <p><em>Loading...</em></p>
 }
@@ -20,40 +20,40 @@ else
 <table class="table">
     <thead>
         <tr>
+            <th>裝置名稱</th>
+            <th>類別</th>
             <th>Mac</th>
-            <th>Device Port</th>
-            <th>Interface</th>
-            <th>Military Power</th>
+            <th>網路端口</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var host in shareData.getCfgService.hostsData.Hosts)
         {
             <tr>
+                <td>
+                    <input type="text" @bind="@host.iface" />
+                </td>
+                @foreach (var newhost in shareData.getCfgService.hostVlan.Hosts)
+                {
+                    if (host.devicePort == newhost.devicePort)
+                    {
+                        <td>
+                            <select @bind="newhost.militaryPower">
+                                @foreach (var power in shareData.militaryPowers)
+                                {
+                                    <option value="@power" selected="@(power == newhost.militaryPower)">@power</option>
+                                }
+                            </select>
+                        </td>
+                    }
+                }
                 <td>@host.Mac</td>
                 <td>@host.devicePort</td>
-                <td>
-                    <input type="text" @bind="@host.iface"/>
-                </td>
-                    @foreach (var newhost in shareData.getCfgService.hostVlan.Hosts)
-                    {
-                        if (host.devicePort == newhost.devicePort)
-                        {
-                            <td>
-                              <select @bind="newhost.militaryPower">
-                                   @foreach (var power in shareData.militaryPowers)
-                                   {
-                                        <option value="@power" selected="@(power == newhost.militaryPower)">@power</option>
-                                   }
-                              </select>
-                            </td>
-                        }
-                    }
             </tr>
         }
     </tbody>
 </table>
-<button class="btn btn-primary" @onclick="Update">Update</button>
+<button class="btn btn-primary" @onclick="Update">更改</button>
 }
 @code {
 

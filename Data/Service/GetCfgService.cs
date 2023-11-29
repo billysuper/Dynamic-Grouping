@@ -6,7 +6,7 @@ namespace Dynamic_Grouping.Data.Service
     public class GetCfgService
     {
         public RootObject JsonData;
-        public HostsObject hostsData ;
+        public HostsObject hostsData = null;
         public HostsObject newhostsData;
         public HostsObject hostVlan;
         private List<string> temp = new List<string>();

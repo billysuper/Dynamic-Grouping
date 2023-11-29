@@ -38,7 +38,7 @@ namespace Dynamic_Grouping.Data
     public class SharedDataService
     {
         //shareData
-        public List<string> militaryPowers { get; set; } = new List<string>() { "Unknown","infantry", "tank", "fighter" };
+        public List<string> militaryPowers { get; set; } = new List<string>() { "Unknown","infantry", "tank", "UAV" };
         public Dictionary<string, List<string>> vlanList { get; set; } = new Dictionary<string, List<string>>();
         public Dictionary<string, List<string>>  newvlanList { get; set; } = new Dictionary<string, List<string>>();
         public string ip ="";

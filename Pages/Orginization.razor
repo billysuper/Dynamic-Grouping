@@ -9,18 +9,18 @@
 <h1>Combat Unit</h1>
 
 <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Add Vlan</label>
+    <label class="col-sm-2 col-form-label">新增作戰編組</label>
     <div class="col-sm-10">
         <input type="text" @bind="newVlan.name" />
-        <button class="btn btn-primary" @onclick="Ad">Add</button>
+        <button class="btn btn-primary" @onclick="Ad">新增</button>
     </div>
 </div>
 <b></b>
 <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Remove Vlan</label>
+    <label class="col-sm-2 col-form-label">移除作戰編組</label>
     <div class="col-sm-10">
         <input type="text" @bind="removeVlan.name" />
-        <button class="btn btn-primary" @onclick="Rm">Remove</button>
+        <button class="btn btn-primary" @onclick="Rm">移除</button>
     </div>
 </div>
 @if (shareData.getCfgService.JsonData==null)
