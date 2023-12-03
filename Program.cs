@@ -38,7 +38,6 @@ builder.Services.AddSingleton<WeatherForecastService>();
 
 builder.Services.AddSingleton<GetCfgService>();
 builder.Services.AddSingleton<PostCfgService>();
-builder.Services.AddSingleton<PostHostsService>();
 builder.Services.AddSingleton<DeleteCfgService>();
 builder.Services.AddSingleton<VlanOperation>();
 //builder.Services.AddSingleton<ShareData>();

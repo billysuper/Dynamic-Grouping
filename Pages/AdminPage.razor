@@ -8,7 +8,7 @@
 @inject UserManager<IdentityUser> _userManager
 @inject SignInManager<IdentityUser> _signInManager
 
-<h3>AdminPage</h3>
+<h3>新增使用者帳號</h3>
 
 
 <EditForm Model="newUser" OnValidSubmit="@AddUserWithRole">
@@ -16,7 +16,7 @@
     <ValidationSummary />
     <div class="form-group row">
         <label for="login" class="col-sm-2 col-form-label">
-            Add User
+            使用者名稱
         </label>
         <div class="col-sm-10">
             <InputText id="login" @bind-Value="newUser.LoginName"></InputText>
@@ -24,7 +24,7 @@
     </div>
     <div class="form-group row">
         <label for="login" class="col-sm-2 col-form-label">
-            Add Password
+            密碼
         </label>
         <div class="col-sm-10">
             <InputText id="login" @bind-Value="pwd"></InputText>
@@ -32,7 +32,7 @@
     </div>
     <div class="form-group row">
         <label for="role-select" class="col-sm-2 col-form-label">
-            Assign Role
+            權限
         </label>
         <div class="col-sm-10">
             <InputSelect id="role-select" @bind-Value="newUser.UserRole">
@@ -43,7 +43,7 @@
             </InputSelect>
         </div>
     </div>
-    <input type="submit" class="btn-primary" value="Save"/> 
+    <input type="submit" class="btn-primary" value="新增"/> 
 
 </EditForm>
 @code {

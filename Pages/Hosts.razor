@@ -1,15 +1,19 @@
 ﻿@page "/hosts"
 
-<PageTitle>Hosts</PageTitle>
+<PageTitle>作戰裝置</PageTitle>
 
 @using Dynamic_Grouping.Data
 @using System.ComponentModel.DataAnnotations
 @using Microsoft.AspNetCore.Components.Forms
 @inject SharedDataService shareData
 
-<h1>Hosts</h1>
-
-<p>time:@shareData.Data</p>
+<h1>作戰裝置</h1>
+<div class="row align-items-center">
+    <label class="col-sm-1 col-form-label">Status:</label>
+    <div class="col-sm-2">
+        <div>@shareData.Data</div>
+    </div>
+</div><p></p>
 @if ( shareData.getCfgService.hostsData==null)
 {
     <p><em>Loading...</em></p>
@@ -31,7 +35,7 @@ else
         {
             <tr>
                 <td>
-                    <input type="text" @bind="@host.iface" />
+                    <input type="text" @bind="@host.iface" @onclick = "OnInputClicked"/>
                 </td>
                 @foreach (var newhost in shareData.getCfgService.hostVlan.Hosts)
                 {
@@ -63,7 +67,7 @@ else
         await base.OnInitializedAsync();
         shareData.OnDataUpdated += UpdateUI;
         shareData.getCfgService.hostVlan = shareData.getCfgService.hostsData;
-        
+
     }
     //background
     private async Task UpdateUI()
@@ -77,7 +81,7 @@ else
     }
     private void Update()
     {
-        while (!shareData.isfinish) ;
+        while (!shareData.isfinish) ;//wait background program
         foreach (var host in shareData.getCfgService.hostsData.Hosts)
         {
             foreach (var newhost in shareData.getCfgService.hostVlan.Hosts)
@@ -88,5 +92,9 @@ else
                 }
             }
         }
+    }
+    private void OnInputClicked()
+    {
+        
     }
 }

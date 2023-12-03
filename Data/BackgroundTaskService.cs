@@ -41,9 +41,9 @@ namespace Dynamic_Grouping.Data
         public List<string> militaryPowers { get; set; } = new List<string>() { "Unknown","infantry", "tank", "UAV" };
         public Dictionary<string, List<string>> vlanList { get; set; } = new Dictionary<string, List<string>>();
         public Dictionary<string, List<string>>  newvlanList { get; set; } = new Dictionary<string, List<string>>();
+        public Dictionary<string,string> portif = new Dictionary<string,string>();
         public string ip ="";
         public string porT ="8181";
-        //private bool changeOrNot=false;
         public bool ipsubmit=false;
         //import
         public GetCfgService getCfgService = new GetCfgService();
@@ -55,7 +55,7 @@ namespace Dynamic_Grouping.Data
         public event Func<Task> OnDataUpdated;
 
         // Store your data here, e.g., a property or a field
-        public int Data { get; set; }
+        public string Data { get; set; }
         public bool isfinish = true;
         public async Task ExecuteMethodsInOrderAsync()
         {
@@ -72,7 +72,7 @@ namespace Dynamic_Grouping.Data
             if (ipsubmit)
             {
                 isfinish = false;
-                Data++;
+                Data = "Success";
                 ExecuteMethodsInOrderAsync();
                 if(getCfgService.hostVlan != null&&getCfgService.hostVlan.Hosts.Count!= getCfgService.hostsData.Hosts.Count)
                 {
@@ -82,7 +82,7 @@ namespace Dynamic_Grouping.Data
             }
             else
             {
-                Data += 3;
+                Data = "Fail";
             }
             OnDataUpdated?.Invoke();
         }

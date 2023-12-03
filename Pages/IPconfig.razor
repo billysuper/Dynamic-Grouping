@@ -5,23 +5,23 @@
 @using Dynamic_Grouping.Data
 @inject SharedDataService shareData
 
-<h1>IPconfig</h1>
-<head>
-    Login with different roles.
-</head>
-<head>
-    Where is the controller?
-</head>
-<div class="form-group row">
-    <label class="col-sm-2 col-form-label">IP</label>
-    <div class="col-sm-10">
-        <input type="text" @bind="@ip" />
+<h1>控制器IP</h1>
+<div class="row align-items-center">
+    <label class="col-sm-1 col-form-label">IP</label>
+    <div class="col-sm-2">
+        <input type="text" @bind="@ip" class="form-control" />
+    </div>
+    <div class="col-sm-2">
+        <button type="submit" class="btn btn-primary" @onclick="set">Submit</button>
     </div>
 </div>
-<button type="submit" class="btn btn-primary" @onclick="set">Submit</button>
-<p>@shareData.ip</p>
-<p>@shareData.porT</p>
-<p>@shareData.Data</p>
+<div class="row align-items-center">
+    <label class="col-sm-1 col-form-label">Status:</label>
+    <div class="col-sm-2">
+        <div>@shareData.Data</div>
+    </div>
+</div>
+
 @code { 
     private string ip = "", port = "";
     private void set()
@@ -29,7 +29,6 @@
 
         shareData.ip = ip;
         shareData.ipsubmit = true;
-        shareData.Data++;
     }
     protected override async Task OnInitializedAsync()
     {

@@ -14,6 +14,13 @@ namespace Dynamic_Grouping.Data.Service
         {
             //update new vpls configuration
             temp.Clear();
+            SharedDataService sharedDataService = new SharedDataService();
+            if (hostData == null)
+            {
+                sharedDataService.Data = "Fail";
+                return;
+            }
+            //find vpls
             foreach(var host in hostData.Hosts)
             {
                 if (!temp.Contains(host.vpls))
@@ -39,11 +46,11 @@ namespace Dynamic_Grouping.Data.Service
                     }
                 }
             }
-            //network
+            //post vpls
             var json = JsonConvert.SerializeObject(data.apps.orgonosprojectvpls.vpls.vplsList);
             serializedJson = json;
             string Json = @"{""org.onosproject.vpls"":{""vpls"":{""vplsList"":" + json + "}}}";//add encapsolution
-            //port
+            // post port
             data.ports.Clear();
             foreach (var host in hostData.Hosts)
             {

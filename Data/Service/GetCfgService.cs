@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using System.Net;
 
@@ -94,30 +95,37 @@ namespace Dynamic_Grouping.Data.Service
             }
             //compare
             hostsData = compareAndmove(newhostsData,hostsData,ip, port);
+            SortHostsByIface();
         }
+
+        //find appeared or disappeared hosts
         private HostsObject compareAndmove(HostsObject newdata,HostsObject data,string ip,string porT)
         {
             if (newdata.Hosts.Count != data.Hosts.Count)
             {
                 //find broken host
-                List<string> notexist = new List<string>();
-                List<string> exist = new List<string>();
+                List<string> disappear = new List<string>();
+                List<string> appear = new List<string>();
+                List<string> hosts = new List<string>();
+                List<string> newhosts = new List<string>();
                 foreach (var host in data.Hosts)
                 {
-                    notexist.Add(host.devicePort);
+                    hosts.Add(host.devicePort);
                 }
                 foreach (var newhost in newdata.Hosts)
                 {
-                    exist.Add(newhost.devicePort);
+                    newhosts.Add(newhost.devicePort);
                 }
-                notexist = notexist.Except(exist).ToList();
-                foreach (var nport in notexist)
+                disappear = hosts.Except(newhosts).ToList();//find disappered hosts
+                appear = newhosts.Except(hosts).ToList();//find new hosts
+                //find new hosts for disappeared hosts
+                foreach (var dhost in disappear)
                 {
                     foreach (var host in data.Hosts)
                     {
                         foreach(var newhost in newdata.Hosts)
                         {
-                            if (nport == host.devicePort && host.militaryPower == newhost.militaryPower && newhost.vpls == "Available")
+                            if (dhost == host.devicePort && host.militaryPower == newhost.militaryPower && newhost.vpls == "Available")
                             {
                                 newhost.vpls = host.vpls;
                                 break;
@@ -125,8 +133,24 @@ namespace Dynamic_Grouping.Data.Service
                         }
                     }
                 }
+                //add appeared hosts
+                foreach (var ahost in appear)
+                {
+                    foreach (var newhost in newdata.Hosts)
+                    {
+                        newhost.vpls = "Available";
+                        break;
+                    }
+                }
             }
             return newdata;
+        }
+
+        private void SortHostsByIface()
+        {
+            hostsData.Hosts = hostsData.Hosts
+                .OrderBy(host => host.iface)
+                .ToList();
         }
     }
 }

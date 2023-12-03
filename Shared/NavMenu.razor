@@ -9,30 +9,29 @@
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <nav class="flex-column">
-        <div class="nav-item px-3">
+        <AuthorizeView>
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="ipconfig">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> 控制器位置
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
+        </AuthorizeView>
+        <AuthorizeView Roles="Subordinate, Commander, Admin">
             <NavLink class="nav-link" href="hosts">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> 作戰裝置
             </NavLink>
-        </div>
-        <div class="nav-item px-3">
+        </AuthorizeView>
+        <AuthorizeView Roles="Commander, Admin">
             <NavLink class="nav-link" href="getconfig">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> 作戰編組
             </NavLink>
-        </div>
-        
+        </AuthorizeView>
         <AuthorizeView Roles="Admin">
             <NavLink class="nav-link" href="adminpage">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> 帳號管理
+            </NavLink>
+        </AuthorizeView>
+        <AuthorizeView Roles="Admin">
+            <NavLink class="nav-link" href="ipconfig">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> 控制器位置
             </NavLink>
         </AuthorizeView>
     </nav>

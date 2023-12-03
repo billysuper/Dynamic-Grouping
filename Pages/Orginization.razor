@@ -6,7 +6,7 @@
 @using Dynamic_Grouping.Data
 @using Dynamic_Grouping.Data.Service
 @inject SharedDataService shareData
-<h1>Combat Unit</h1>
+<h1>作戰編組</h1>
 
 <div class="form-group row">
     <label class="col-sm-2 col-form-label">新增作戰編組</label>
@@ -15,7 +15,7 @@
         <button class="btn btn-primary" @onclick="Ad">新增</button>
     </div>
 </div>
-<b></b>
+<p></p>
 <div class="form-group row">
     <label class="col-sm-2 col-form-label">移除作戰編組</label>
     <div class="col-sm-10">
@@ -23,6 +23,14 @@
         <button class="btn btn-primary" @onclick="Rm">移除</button>
     </div>
 </div>
+<p></p>
+<div class="row align-items-center">
+    <label class="col-sm-2 col-form-label">Status:</label>
+    <div class="col-sm-10">
+        <div>@shareData.Data</div>
+    </div>
+</div>
+<p></p>
 @if (shareData.getCfgService.JsonData==null)
 {
     <p><em>Loading...</em></p>
@@ -36,9 +44,9 @@ else
         <table class="table">
             <thead>
                 <tr>
-                    <th>Port</th>
-                    <th>Military Power</th>
-                    <th>Move</th>
+                    <th>裝置名稱</th>
+                    <th>類別</th>
+                    <th>所屬編組</th>
                 </tr>
             </thead>
                 <tbody>
@@ -47,7 +55,7 @@ else
                         if (vlan.Value.Contains(host.devicePort))
                         {
                             <tr>
-                                <td>@host.devicePort</td>
+                                <td>@host.iface</td>
                                 <td>@host.militaryPower</td>
                                 @foreach (var temphost in shareData.getCfgService.hostVlan.Hosts)
                                 {
@@ -70,10 +78,8 @@ else
         </table>
     }
 }
-<button class="btn btn-primary" @onclick="Update">Update</button>
+<button class="btn btn-primary" @onclick="Update">移動</button>
 <p>@shareData.postCfgService.serializedJson</p><b></b>
-<p>Success:@count</p><b></b>
-<p>time:@shareData.Data</p>
 @code {
     private Dictionary<string, string> ifaceVpls = new Dictionary<string, string>();
     private VplsInfo newVlan = new VplsInfo();
