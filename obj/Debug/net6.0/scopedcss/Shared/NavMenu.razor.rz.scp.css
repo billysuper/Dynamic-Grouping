@@ -42,12 +42,12 @@
 
 .nav-item[b-v46lvmlr6w]  a.active {
     background-color: rgba(255,255,255,0.25);
-    color: white;
+    color: red;
 }
 
 .nav-item[b-v46lvmlr6w]  a:hover {
     background-color: rgba(255,255,255,0.1);
-    color: white;
+    color: red;
 }
 
 @media (min-width: 641px) {

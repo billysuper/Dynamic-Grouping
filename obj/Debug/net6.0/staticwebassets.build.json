@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "McQVQnTz+dyF5iZ9pstJl3GjuY0VhsAhKKsq64w0AiA=",
+  "Hash": "Bl1XXuV9wkTEMHkawONW6TfpisvUAxTlNZgfFxRLT7M=",
   "Source": "Dynamic-Grouping",
   "BasePath": "_content/Dynamic-Grouping",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "Dynamic-Grouping\\wwwroot",
       "Source": "Dynamic-Grouping",
-      "ContentRoot": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\",
       "BasePath": "_content/Dynamic-Grouping",
       "Pattern": "**"
     }
@@ -1037,10 +1037,10 @@
       "OriginalItemSpec": "C:\\Users\\jungl\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.14\\staticwebassets\\V5\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\obj\\Debug\\net6.0\\scopedcss\\bundle\\Dynamic-Grouping.styles.css",
+      "Identity": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\obj\\Debug\\net6.0\\scopedcss\\bundle\\Dynamic-Grouping.styles.css",
       "SourceId": "Dynamic-Grouping",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
       "BasePath": "_content/Dynamic-Grouping",
       "RelativePath": "Dynamic-Grouping.styles.css",
       "AssetKind": "All",
@@ -1051,13 +1051,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\obj\\Debug\\net6.0\\scopedcss\\bundle\\Dynamic-Grouping.styles.css"
+      "OriginalItemSpec": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\obj\\Debug\\net6.0\\scopedcss\\bundle\\Dynamic-Grouping.styles.css"
     },
     {
-      "Identity": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Dynamic-Grouping.bundle.scp.css",
+      "Identity": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Dynamic-Grouping.bundle.scp.css",
       "SourceId": "Dynamic-Grouping",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/Dynamic-Grouping",
       "RelativePath": "Dynamic-Grouping.bundle.scp.css",
       "AssetKind": "All",
@@ -1068,13 +1068,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Dynamic-Grouping.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Dynamic-Grouping.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Identity": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "SourceId": "Dynamic-Grouping",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\",
       "BasePath": "_content/Dynamic-Grouping",
       "RelativePath": "css/bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -1088,10 +1088,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "Dynamic-Grouping",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\",
       "BasePath": "_content/Dynamic-Grouping",
       "RelativePath": "css/bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -1105,10 +1105,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "Identity": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
       "SourceId": "Dynamic-Grouping",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\",
       "BasePath": "_content/Dynamic-Grouping",
       "RelativePath": "css/open-iconic/font/css/open-iconic-bootstrap.min.css",
       "AssetKind": "All",
@@ -1122,10 +1122,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "Identity": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
       "SourceId": "Dynamic-Grouping",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\",
       "BasePath": "_content/Dynamic-Grouping",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.eot",
       "AssetKind": "All",
@@ -1139,10 +1139,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
     },
     {
-      "Identity": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "Identity": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
       "SourceId": "Dynamic-Grouping",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\",
       "BasePath": "_content/Dynamic-Grouping",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.otf",
       "AssetKind": "All",
@@ -1156,10 +1156,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
     },
     {
-      "Identity": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "Identity": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
       "SourceId": "Dynamic-Grouping",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\",
       "BasePath": "_content/Dynamic-Grouping",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.svg",
       "AssetKind": "All",
@@ -1173,10 +1173,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
     },
     {
-      "Identity": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "Identity": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
       "SourceId": "Dynamic-Grouping",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\",
       "BasePath": "_content/Dynamic-Grouping",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.ttf",
       "AssetKind": "All",
@@ -1190,10 +1190,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
     },
     {
-      "Identity": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "Identity": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
       "SourceId": "Dynamic-Grouping",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\",
       "BasePath": "_content/Dynamic-Grouping",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.woff",
       "AssetKind": "All",
@@ -1207,10 +1207,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
     },
     {
-      "Identity": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "Identity": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
       "SourceId": "Dynamic-Grouping",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\",
       "BasePath": "_content/Dynamic-Grouping",
       "RelativePath": "css/open-iconic/FONT-LICENSE",
       "AssetKind": "All",
@@ -1224,10 +1224,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
     },
     {
-      "Identity": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "Identity": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
       "SourceId": "Dynamic-Grouping",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\",
       "BasePath": "_content/Dynamic-Grouping",
       "RelativePath": "css/open-iconic/ICON-LICENSE",
       "AssetKind": "All",
@@ -1241,10 +1241,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\ICON-LICENSE"
     },
     {
-      "Identity": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\css\\open-iconic\\README.md",
+      "Identity": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\css\\open-iconic\\README.md",
       "SourceId": "Dynamic-Grouping",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\",
       "BasePath": "_content/Dynamic-Grouping",
       "RelativePath": "css/open-iconic/README.md",
       "AssetKind": "All",
@@ -1258,10 +1258,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\README.md"
     },
     {
-      "Identity": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\css\\site.css",
+      "Identity": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\css\\site.css",
       "SourceId": "Dynamic-Grouping",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\",
       "BasePath": "_content/Dynamic-Grouping",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -1275,10 +1275,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\favicon.ico",
+      "Identity": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\favicon.ico",
       "SourceId": "Dynamic-Grouping",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\wwwroot\\",
       "BasePath": "_content/Dynamic-Grouping",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",

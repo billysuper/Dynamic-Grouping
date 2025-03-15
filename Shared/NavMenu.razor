@@ -9,31 +9,31 @@
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <nav class="flex-column">
-        <AuthorizeView>
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+        @*<AuthorizeView>*@
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All" style="color: white;">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
-        </AuthorizeView>
-        <AuthorizeView Roles="Subordinate, Commander, Admin">
-            <NavLink class="nav-link" href="hosts">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> 作戰裝置
+        @*</AuthorizeView>*@
+       @* <AuthorizeView Roles="Subordinate, Commander, Admin">*@
+            <NavLink class="nav-link" href="hosts" style="color: white;">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> 通訊裝置
             </NavLink>
-        </AuthorizeView>
-        <AuthorizeView Roles="Commander, Admin">
-            <NavLink class="nav-link" href="getconfig">
+        @*</AuthorizeView>*@
+        @*<AuthorizeView Roles="Commander, Admin">*@
+            <NavLink class="nav-link" href="getconfig" style="color: white;">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> 作戰編組
             </NavLink>
-        </AuthorizeView>
-        <AuthorizeView Roles="Admin">
-            <NavLink class="nav-link" href="adminpage">
+        @*</AuthorizeView>*@
+        @*<AuthorizeView Roles="Admin">*@
+            <NavLink class="nav-link" href="adminpage" style="color: white;">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> 帳號管理
             </NavLink>
-        </AuthorizeView>
-        <AuthorizeView Roles="Admin">
-            <NavLink class="nav-link" href="ipconfig">
+        @*</AuthorizeView>*@
+        @*<AuthorizeView Roles="Admin" >*@
+            <NavLink class="nav-link" href="ipconfig" style="color: white;">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> 控制器位置
             </NavLink>
-        </AuthorizeView>
+        @*</AuthorizeView>*@
     </nav>
 </div>
 

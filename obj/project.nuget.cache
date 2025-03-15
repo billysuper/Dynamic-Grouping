@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "I1q+IjaXNIxFRR9QJKeMz+cLK3JVfYw37b5VcRnD4sv5bN40jqVzsSluYg3SEOYUogUxJSOPGrOm4Mt7KB6Baw==",
+  "dgSpecHash": "IBv1HKByvsj9vwbcINp3LqHSe8G/l4sGkRPJ5USrc3YmtYAid5kxk2rGIWojfNkFe01kqNQvfaE1KKNvvqld6w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jungl\\Desktop\\實作\\Dynamic-Grouping\\Dynamic-Grouping.csproj",
+  "projectFilePath": "C:\\Users\\jungl\\Desktop\\homework\\實作\\Dynamic-Grouping\\Dynamic-Grouping.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jungl\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\jungl\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.16\\microsoft.aspnetcore.authorization.6.0.16.nupkg.sha512",
